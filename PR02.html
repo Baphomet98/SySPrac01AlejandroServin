@@ -1,0 +1,664 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PRACTICA 02 "SE&Ntilde;ALES EN TIEMPO CONTINUO"</title><meta name="generator" content="MATLAB 9.9"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-11-30"><meta name="DC.source" content="PR02.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>PRACTICA 02 "SE&Ntilde;ALES EN TIEMPO CONTINUO"</h1><!--introduction--><p><b>INTEGRANTES:</b></p><div><ul><li>Basilio Perez Neftali</li><li>Orozco Segovia Mikhael Imanol</li><li>Servin Zamora Alejandro</li></ul></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Objetivos:</a></li><li><a href="#2">1.-Reproducir la seccion 1.11 del libro de Lathi.</a></li><li><a href="#12">2.- RESUELVE EL PROBLEMA 1.2-2 USANDO LAS HERRAMIENTAS DEL PASO ANTERIOR.</a></li><li><a href="#18">3.-Proporcione el c&oacute;digo MATLAB y la salida que traza la parte impar xo (t) de la funci&oacute;n x (t) = 2^&#8722; t cos (2&#960;t) u (t &#8722; &#960;) en un intervalo de longitud adecuada utilizando un n&uacute;mero adecuado de puntos.</a></li><li><a href="#20">4. CONSTRUYE LA GR&Aacute;FICA DE: <img src="PR02_eq13051327297020118941.png" alt="$$ S_{f}(x)=\sum_{k=1}^{10} \cos (2 \pi k x) $$" style="width:141px;height:44px;"></a></li><li><a href="#21">5.-Resuelve el problema 1.11-3</a></li><li><a href="#27">6.-Construya una app que permita (consultar los ejemplos preconstruidos):</a></li><li><a href="#29">REFERENCIAS</a></li></ul></div><h2 id="1">Objetivos:</h2><div><ul><li>Manipulaci&oacute;n b&aacute;sica de MATLAB</li><li>Gr&aacute;ficas de se&ntilde;ales reales y complejas continuas</li><li>Transformaci&oacute;n de se&ntilde;ales continuas (escalamientos y traslaciones)</li><li>Calculo de energ&iacute;a y potencia de se&ntilde;ales continuas</li></ul></div><h2 id="2">1.-Reproducir la seccion 1.11 del libro de Lathi.</h2><p>1.11-1 Funciones Anonimas</p><pre class="codeinput">f = @(t) exp(-t).*cos(2*pi*t);
+t=0; f(t)
+f(0);
+t=(-2:2);
+f(t);
+<span class="comment">% Primer Grafica</span>
+plot(t,f(t));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'f(t)'</span>);
+grid <span class="string">on</span>;
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><img vspace="5" hspace="5" src="PR02_01.png" alt=""> <p>Segunda Graf&iacute;ca</p><pre class="codeinput">t=(-2:0.01:2);
+plot(t,f(t));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'f(t)'</span>);
+grid <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="PR02_02.png" alt=""> <p>1.11-2 Operadores Relacionales y la Funci&oacute;n de paso unitario</p><p>Primer Graf&iacute;ca</p><pre class="codeinput">u = @(t) 1.0.*(t&gt;=0);
+t = (-2:2);
+plot(t,u(t));
+xlabel(<span class="string">"t"</span>);
+ylabel(<span class="string">"u(t)"</span>);
+</pre><img vspace="5" hspace="5" src="PR02_03.png" alt=""> <p>Segunda Graf&iacute;ca</p><pre class="codeinput">t = (-2:0.01:2); plot(t,u(t));
+xlabel(<span class="string">"t"</span>); ylabel(<span class="string">"u(t)"</span>);
+axis([-2 2 -0.1 1.1]);
+</pre><img vspace="5" hspace="5" src="PR02_04.png" alt=""> <p>Tercer Graf&iacute;ca</p><pre class="codeinput">p=@(t) 1.0*((t&gt;=0)&amp;(t&lt;1));
+t=(-1:0.01:2);
+plot(t,p(t));
+xlabel(<span class="string">"t"</span>);
+ylabel(<span class="string">"p(t) = u(t)-u(t-1)"</span>);
+axis([-1 2 -.1 1.1]);
+</pre><img vspace="5" hspace="5" src="PR02_05.png" alt=""> <p>1.11-3 Operaciones de Visualizaci&oacute;n en la Variable Independiente</p><p>Primer Graf&iacute;ca</p><pre class="codeinput">g = @(t) f(t).*u(t);
+t = (-2:0.01:2);
+plot(t,g(2*t+1));
+xlabel(<span class="string">"t"</span>);
+ylabel(<span class="string">"g(2t+1)"</span>);
+grid;
+</pre><img vspace="5" hspace="5" src="PR02_06.png" alt=""> <p>Segunda Graf&iacute;ca</p><pre class="codeinput">plot(t,g(-t+1));
+xlabel(<span class="string">"t"</span>);
+ylabel(<span class="string">"g(-t+1)"</span>);
+grid;
+</pre><img vspace="5" hspace="5" src="PR02_07.png" alt=""> <p>Tercer Graf&iacute;ca</p><pre class="codeinput">plot(t,g(2*t+1)+g(-t+1));
+xlabel(<span class="string">"t"</span>);
+ylabel(<span class="string">"h(t)"</span>);
+grid;
+</pre><img vspace="5" hspace="5" src="PR02_08.png" alt=""> <p>1.11-4 Integral Num&eacute;rica y Estimaci&oacute;n de la Energ&iacute;a de la Se&ntilde;al</p><pre class="codeinput">x = @(t) exp(-t).*((t&gt;=0)&amp;(t&lt;1));
+t = (0:0.01:1);
+E_x = sum(x(t).*x(t)*0.01)
+x_squared = @(t) x(t).*x(t);
+E_x = quad(x_squared,0,1)
+g_squared = @(t) g(t).*g(t);
+t = (0:0.001:100);
+E_g = sum(g_squared(t)*0.001)
+E_g = quad(g_squared,0,100)
+</pre><pre class="codeoutput">
+E_x =
+
+    0.4367
+
+
+E_x =
+
+    0.4323
+
+
+E_g =
+
+    0.2567
+
+
+E_g =
+
+    0.2562
+
+</pre><p>REPASO 1.21  Calcula la Energ&iacute;a de la Se&ntilde;al con MATLAB Usa MATLAB para confirmar que la energ&iacute;a h(t),definida previamente como h(t)=g(2t+1)+g(-t+1), es Eh=0.3768.</p><pre class="codeinput">t=(-2:0.01:2);
+h= @(t) ((t&gt;=-2)&amp;(t&lt;2));
+Xcua= @(t) h(t).*h(t);
+Eh= sum(Xcua(t)*.001)
+</pre><pre class="codeoutput">
+Eh =
+
+    0.4000
+
+</pre><h2 id="12">2.- RESUELVE EL PROBLEMA 1.2-2 USANDO LAS HERRAMIENTAS DEL PASO ANTERIOR.</h2><p>1.2-2 PARA LA SE&Ntilde;AL x(t)en la figura 1.2-2, grafique lo siguiente (a) x(t-4) (b) x(t/1.5) (c) x(-t) (d) x(2t-4) (e) x(2-t) (t&lt;=0).*(-t)+(t&gt;=0).*(t);</p><pre class="codeinput">f= @(t)((t&lt;=0)&amp;(t&gt;=-4)).*(-t)+((t&gt;0)&amp;(t&lt;=2)).*(t);
+figure
+t= -5:0.01:5;
+plot(t,f(t),<span class="string">'linewidth'</span>,2)
+xlabel(<span class="string">'t'</span>);ylabel(<span class="string">'x(t)'</span>);
+grid <span class="string">on</span>;
+ax=gca;
+ax.XAxisLocation = <span class="string">'origin'</span>;
+ax.YAxisLocation = <span class="string">'origin'</span>;
+axis([-5 3, -2 5])
+ax.Box = <span class="string">'off'</span>;
+title(<span class="string">'Figura P1.2.2'</span>)
+</pre><img vspace="5" hspace="5" src="PR02_09.png" alt=""> <p>inciso (a)</p><pre class="codeinput">t= -1:.01:10;
+plot(t,f(t-4),<span class="string">'linewidth'</span>,2)
+xlabel(<span class="string">'t'</span>);ylabel(<span class="string">'x(t-4)'</span>);
+grid <span class="string">on</span>;
+ax=gca;
+ax.XAxisLocation = <span class="string">'origin'</span>;
+ax.YAxisLocation = <span class="string">'origin'</span>;
+axis([-1 9, -2 5])
+ax.Box = <span class="string">'off'</span>;
+</pre><img vspace="5" hspace="5" src="PR02_10.png" alt=""> <p>inciso (b)</p><pre class="codeinput">t= -20:.01:15;
+plot(t,f(t/1.5),<span class="string">'linewidth'</span>,2)
+xlabel(<span class="string">'t'</span>);ylabel(<span class="string">'x(t/1.5)'</span>);
+grid <span class="string">on</span>;
+ax=gca;
+ax.XAxisLocation = <span class="string">'origin'</span>;
+ax.YAxisLocation = <span class="string">'origin'</span>;
+axis([-10 6, -2 5])
+ax.Box = <span class="string">'off'</span>;
+</pre><img vspace="5" hspace="5" src="PR02_11.png" alt=""> <p>iniso(c)</p><pre class="codeinput">t= -20:.01:15;
+plot(t,f(-t),<span class="string">'linewidth'</span>,2)
+xlabel(<span class="string">'t'</span>);ylabel(<span class="string">'x(-t)'</span>);
+grid <span class="string">on</span>;
+ax=gca;
+ax.XAxisLocation = <span class="string">'origin'</span>;
+ax.YAxisLocation = <span class="string">'origin'</span>;
+axis([-4 6, -2 5])
+ax.Box = <span class="string">'off'</span>;
+</pre><img vspace="5" hspace="5" src="PR02_12.png" alt=""> <p>inicso(d)</p><pre class="codeinput">t= -20:.01:15;
+plot(t,f(2*t-4),<span class="string">'linewidth'</span>,2)
+xlabel(<span class="string">'t'</span>);ylabel(<span class="string">'x(2t-4)'</span>);
+grid <span class="string">on</span>;
+ax=gca;
+ax.XAxisLocation = <span class="string">'origin'</span>;
+ax.YAxisLocation = <span class="string">'origin'</span>;
+axis([-4 6, -2 5])
+ax.Box = <span class="string">'off'</span>;
+</pre><img vspace="5" hspace="5" src="PR02_13.png" alt=""> <p>inciso(e)</p><pre class="codeinput">t= -20:.01:15;
+plot(t,f(2-t),<span class="string">'linewidth'</span>,2)
+xlabel(<span class="string">'t'</span>);ylabel(<span class="string">'x(2-t)'</span>);
+grid <span class="string">on</span>;
+ax=gca;
+ax.XAxisLocation = <span class="string">'origin'</span>;
+ax.YAxisLocation = <span class="string">'origin'</span>;
+axis([-1 7, -2 6])
+ax.Box = <span class="string">'off'</span>;
+</pre><img vspace="5" hspace="5" src="PR02_14.png" alt=""> <h2 id="18">3.-Proporcione el c&oacute;digo MATLAB y la salida que traza la parte impar xo (t) de la funci&oacute;n x (t) = 2^&#8722; t cos (2&#960;t) u (t &#8722; &#960;) en un intervalo de longitud adecuada utilizando un n&uacute;mero adecuado de puntos.</h2><pre class="codeinput">figure
+t=(-5:1:5);
+x=(2*exp(-t).*cos(2.*pi.*t).*((t&gt;=-5)&amp;(t&lt;5)));
+plot(x,t);
+</pre><img vspace="5" hspace="5" src="PR02_15.png" alt=""> <pre class="codeinput">figure
+xo=(cos(2.*pi.*t).*((t&gt;=-5)&amp;(t&lt;5))/2.*exp(t));
+plot(xo,t);
+</pre><img vspace="5" hspace="5" src="PR02_16.png" alt=""> <h2 id="20">4. CONSTRUYE LA GR&Aacute;FICA DE: <img src="PR02_eq13051327297020118941.png" alt="$$ S_{f}(x)=\sum_{k=1}^{10} \cos (2 \pi k x) $$" style="width:141px;height:44px;"></h2><pre class="codeinput">t= -20:0.01:20;
+f=0;
+<span class="keyword">for</span> k = 0:10
+    f = f + cos(2*pi*k*t);
+
+<span class="keyword">end</span>
+t= -20:0.01:20;
+figure(1);
+subplot(2,4,[1,2])
+plot(t,f,<span class="string">'Linewidth'</span>,2)
+xlabel(<span class="string">'t'</span>);ylabel(<span class="string">'Sf(t)'</span>);
+grid <span class="string">on</span>;
+ax=gca;
+ax.XAxisLocation = <span class="string">'origin'</span>;
+ax.YAxisLocation = <span class="string">'origin'</span>;
+axis([-8 8, -3 13])
+ax.Box = <span class="string">'off'</span>;
+
+subplot(2,4,[3,4])
+plot(t,f,<span class="string">'r'</span> ,<span class="string">'Linewidth'</span>,2)
+xlabel(<span class="string">'t'</span>);ylabel(<span class="string">'Sf(t)'</span>);
+grid <span class="string">on</span>;
+ax=gca;
+ax.XAxisLocation = <span class="string">'origin'</span>;
+ax.YAxisLocation = <span class="string">'origin'</span>;
+axis([-4.5 4.5, -2.5 7])
+ax.Box = <span class="string">'off'</span>;
+
+subplot(2,4,[5,6])
+plot(t,f,<span class="string">'g'</span> ,<span class="string">'Linewidth'</span>,2)
+xlabel(<span class="string">'t'</span>);ylabel(<span class="string">'Sf(t)'</span>);
+grid <span class="string">on</span>;
+ax=gca;
+ax.XAxisLocation = <span class="string">'origin'</span>;
+ax.YAxisLocation = <span class="string">'origin'</span>;
+axis([-1.75 1.75, -1.75 2.5])
+ax.Box = <span class="string">'off'</span>;
+
+subplot(2,4,[7,8])
+plot(t,f,<span class="string">'c'</span> ,<span class="string">'Linewidth'</span>,2)
+xlabel(<span class="string">'t'</span>);ylabel(<span class="string">'Sf(t)'</span>);
+grid <span class="string">on</span>;
+ax=gca;
+ax.XAxisLocation = <span class="string">'origin'</span>;
+ax.YAxisLocation = <span class="string">'origin'</span>;
+axis([-0.8 0.8, -.5 .5])
+ax.Box = <span class="string">'off'</span>;
+</pre><img vspace="5" hspace="5" src="PR02_17.png" alt=""> <h2 id="21">5.-Resuelve el problema 1.11-3</h2><p>1.11-3 Definir: <img src="PR02_eq18020772053804589372.png" alt="$$x(t)=e^{t(1 + j 2 \pi)} u(-t)$" style="width:128px;height:18px;">$</p><p>&amp;</p><p><img src="PR02_eq08819023949122121010.png" alt="$$y(t) = Re (2 x (\frac{-5-t}{2}))$$" style="width:145px;height:30px;"></p><p>a)Utilice MATLAB para representar Re (x (t)) frente a Im (x (at)) para a = 0.5, 1 y 2 y &#8722;10&#8804;t&#8804; 10. &iquest;Qu&eacute; importancia tiene el factor de escala a en la forma de la figura resultante?</p><p>Respuesta:Importa en cuesti&oacute;n de que amplifica o dismuye dependiendo el valor de a con respecto al eje t</p><pre class="codeinput">clear <span class="string">all</span>
+close <span class="string">all</span>
+t=[-10:0.01:10];
+u=@(t) (t&gt;=0);
+x= @(t) (exp(t.*(1+j*2*pi)).*u(-t));
+y= real(2.*x((-5-t)/(2)));
+a1=0.5;
+a2=1;
+a3=2;
+figure(1)
+plot(real(x(t)),imag(x(a1.*t)))
+
+figure(2)
+plot(real(x(t)),imag(x(a2.*t)))
+
+figure(3)
+plot(real(x(t)),imag(x(a3.*t)))
+</pre><img vspace="5" hspace="5" src="PR02_18.png" alt=""> <img vspace="5" hspace="5" src="PR02_19.png" alt=""> <img vspace="5" hspace="5" src="PR02_20.png" alt=""> <p>B) Usa MATLAB para graf&iacute;car y(t) sobre -10&lt;=t&lt;=10. Analiticamente determine el tiempo t0 donde y(t) tiene una discontinuidad de salto.Verifique su c&aacute;lculo de t0 utilizando la graf&iacute;ca de y(t)</p><pre class="codeinput">clear <span class="string">all</span>
+close <span class="string">all</span>
+t=[-10:0.01:10];
+u=@(t) 1.0.*(t&gt;=0);
+x= @(t) (exp(t.*(1+j*2*pi)).*u(-t));
+y= real(2.*x((-5-t)/(2)));
+figure(1)
+plot(t,y)
+</pre><img vspace="5" hspace="5" src="PR02_21.png" alt=""> <p>C)Usa MATLAB e integral numerica para calcular la energia Ex de la se&ntilde;al x(t)</p><pre class="codeinput">clear <span class="string">all</span>
+close <span class="string">all</span>
+u=@(t) 1.0.*(t&gt;=0);
+x= @(t) (exp(t.*(1+j*2*pi)).*u(-t));
+t=[-10:0.01:10];
+g_squared = @(t) x(t).*x(t);
+E_x = sum(g_squared(t)*.001)
+</pre><pre class="codeoutput">
+E_x =
+
+   0.0017 - 0.0078i
+
+</pre><p>D)Usa MATLAB e integral numerica para calcular la energia de Ey de la se&ntilde;al y(t)</p><pre class="codeinput">clear <span class="string">all</span>
+close <span class="string">all</span>
+t=[-10:0.01:10];
+u=@(t) 1.0.*(t&gt;=0);
+x= @(t) (exp(t.*(1+j*2*pi)).*u(-t));
+y= real(2.*x((-5-t)/(2)));
+g_squared = @(t) y.*y;
+E_y=sum(g_squared(t)*0.001)
+</pre><pre class="codeoutput">
+E_y =
+
+    0.2069
+
+</pre><p>E) la gr&aacute;fica de <img src="PR02_eq14833433867325483769.png" alt="$x(t)$" style="width:23px;height:15px;"> para <img src="PR02_eq05462134584429915192.png" alt="$t\in[-10,10]$" style="width:77px;height:15px;"></p><pre class="codeinput">clear <span class="string">all</span>
+close <span class="string">all</span>
+t=[-10:0.01:10];
+u=@(t) 1.0.*(t&gt;=0);
+x= @(t) (exp(t.*(1+j*2*pi)).*u(-t));
+figure(1)
+plot(t,x(t))
+</pre><pre class="codeoutput">Warning: Imaginary parts of complex X and/or Y arguments ignored. 
+</pre><img vspace="5" hspace="5" src="PR02_22.png" alt=""> <h2 id="27">6.-Construya una app que permita (consultar los ejemplos preconstruidos):</h2><p>Gr&aacute;ficar se&ntilde;ales en tiempo continuo reales, el usuario ingresa la definici&oacute;n de la se&ntilde;al en el formato especifico El usuario puede definir el intervalo de la gr&aacute;fica El usuario puede seleccionar el tipo de transformaci&oacute;n (horizontal, vertical o combinaci&oacute;n) que desee realizar a la se&ntilde;al, la app deber&aacute; mostrar la gr&aacute;fica de esta transformaci&oacute;n. Se adjunta una imagen de la app a la pr&aacute;ctica, y el archivo de la app.</p><p><img vspace="5" hspace="5" src="App.png" alt=""> </p><p><a href="https://drive.google.com/file/d/18Y6gHV89YGdpvp0cEXr0Ut0iWnJB6ItQ/view?usp=sharing">Descarga la App</a></p><h2 id="29">REFERENCIAS</h2><p>1.-Facultad Autodidacta 5/oct/2020 "35.- Subir proyecto a github f&aacute;cilmente (versi&oacute;n 2)" Recuraperado de <a href="https://youtu.be/RjvyyINfVYY">https://youtu.be/RjvyyINfVYY</a></p><p>2.- MATLAB . (2020). Publishing Markup. 24/11/2020, de MATLAB</p><p>Sitio web: <a href="https://la.mathworks.com/help/matlab/matlab_prog/marking-up-matlab-comments-for-publishing.html">https://la.mathworks.com/help/matlab/matlab_prog/marking-up-matlab-comments-for-publishing.html</a></p><p>3.-https://www.python-course.eu/matplotlib_subplots.php</p><p>4.-https://www.youtube.com/watch?v=dZrShAGqT44 VIDEO DE SERIES DE FOURIER EN MATLAB</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% PRACTICA 02 "SEÑALES EN TIEMPO CONTINUO"
+%
+% *INTEGRANTES:*
+%
+% * Basilio Perez Neftali
+% * Orozco Segovia Mikhael Imanol
+% * Servin Zamora Alejandro
+%
+%% Objetivos:
+% * Manipulación básica de MATLAB
+% * Gráficas de señales reales y complejas continuas
+% * Transformación de señales continuas (escalamientos y traslaciones)
+% * Calculo de energía y potencia de señales continuas
+%
+%% 1.-Reproducir la seccion 1.11 del libro de Lathi.
+% 1.11-1 Funciones Anonimas
+f = @(t) exp(-t).*cos(2*pi*t);
+t=0; f(t)
+f(0);
+t=(-2:2);
+f(t);
+% Primer Grafica
+plot(t,f(t));
+xlabel('t');
+ylabel('f(t)');
+grid on;
+%%
+% Segunda Grafíca
+t=(-2:0.01:2);
+plot(t,f(t));
+xlabel('t');
+ylabel('f(t)');
+grid on;
+%%
+% 1.11-2 Operadores Relacionales y la Función de paso unitario
+%
+% Primer Grafíca
+u = @(t) 1.0.*(t>=0);
+t = (-2:2); 
+plot(t,u(t));
+xlabel("t");
+ylabel("u(t)"); 
+%%
+% Segunda Grafíca
+t = (-2:0.01:2); plot(t,u(t));
+xlabel("t"); ylabel("u(t)");
+axis([-2 2 -0.1 1.1]);
+%%
+% Tercer Grafíca
+p=@(t) 1.0*((t>=0)&(t<1));
+t=(-1:0.01:2);
+plot(t,p(t));
+xlabel("t"); 
+ylabel("p(t) = u(t)-u(t-1)");
+axis([-1 2 -.1 1.1]);
+%%
+% 1.11-3 Operaciones de Visualización en la Variable Independiente
+%
+% Primer Grafíca
+g = @(t) f(t).*u(t);
+t = (-2:0.01:2);
+plot(t,g(2*t+1)); 
+xlabel("t"); 
+ylabel("g(2t+1)");
+grid;
+%%
+% Segunda Grafíca
+plot(t,g(-t+1)); 
+xlabel("t");
+ylabel("g(-t+1)");
+grid;
+%%
+% Tercer Grafíca
+plot(t,g(2*t+1)+g(-t+1));
+xlabel("t");
+ylabel("h(t)"); 
+grid;
+%% 
+% 1.11-4 Integral Numérica y Estimación de la Energía de la Señal
+%
+x = @(t) exp(-t).*((t>=0)&(t<1));
+t = (0:0.01:1);
+E_x = sum(x(t).*x(t)*0.01)
+x_squared = @(t) x(t).*x(t);
+E_x = quad(x_squared,0,1)
+g_squared = @(t) g(t).*g(t);
+t = (0:0.001:100);
+E_g = sum(g_squared(t)*0.001)
+E_g = quad(g_squared,0,100)
+%%
+% REPASO 1.21  Calcula la Energía de la Señal con MATLAB
+% Usa MATLAB para confirmar que la energía h(t),definida previamente como 
+% h(t)=g(2t+1)+g(-t+1), es Eh=0.3768.
+t=(-2:0.01:2);
+h= @(t) ((t>=-2)&(t<2));
+Xcua= @(t) h(t).*h(t);
+Eh= sum(Xcua(t)*.001)
+
+%% 2.- RESUELVE EL PROBLEMA 1.2-2 USANDO LAS HERRAMIENTAS DEL PASO ANTERIOR.
+% 1.2-2 PARA LA SEÑAL x(t)en la figura 1.2-2, grafique lo siguiente
+% (a) x(t-4)
+% (b) x(t/1.5)
+% (c) x(-t)
+% (d) x(2t-4)
+% (e) x(2-t)
+% (t<=0).*(-t)+(t>=0).*(t);
+f= @(t)((t<=0)&(t>=-4)).*(-t)+((t>0)&(t<=2)).*(t);
+figure
+t= -5:0.01:5;
+plot(t,f(t),'linewidth',2)
+xlabel('t');ylabel('x(t)');
+grid on;
+ax=gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+axis([-5 3, -2 5])
+ax.Box = 'off';
+title('Figura P1.2.2')
+%% 
+% inciso (a)
+t= -1:.01:10;
+plot(t,f(t-4),'linewidth',2)
+xlabel('t');ylabel('x(t-4)');
+grid on;
+ax=gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+axis([-1 9, -2 5])
+ax.Box = 'off';
+%%
+% inciso (b)
+t= -20:.01:15;
+plot(t,f(t/1.5),'linewidth',2)
+xlabel('t');ylabel('x(t/1.5)');
+grid on;
+ax=gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+axis([-10 6, -2 5])
+ax.Box = 'off';
+%%
+% iniso(c)
+t= -20:.01:15;
+plot(t,f(-t),'linewidth',2)
+xlabel('t');ylabel('x(-t)');
+grid on;
+ax=gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+axis([-4 6, -2 5])
+ax.Box = 'off';
+%%
+% inicso(d)
+t= -20:.01:15;
+plot(t,f(2*t-4),'linewidth',2)
+xlabel('t');ylabel('x(2t-4)');
+grid on;
+ax=gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+axis([-4 6, -2 5])
+ax.Box = 'off';
+%%
+% inciso(e)
+t= -20:.01:15;
+plot(t,f(2-t),'linewidth',2)
+xlabel('t');ylabel('x(2-t)');
+grid on;
+ax=gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+axis([-1 7, -2 6])
+ax.Box = 'off';
+%% 3.-Proporcione el código MATLAB y la salida que traza la parte impar xo (t) de la función x (t) = 2^− t cos (2πt) u (t − π) en un intervalo de longitud adecuada utilizando un número adecuado de puntos.
+figure
+t=(-5:1:5);
+x=(2*exp(-t).*cos(2.*pi.*t).*((t>=-5)&(t<5)));
+plot(x,t);
+%%
+figure
+xo=(cos(2.*pi.*t).*((t>=-5)&(t<5))/2.*exp(t));
+plot(xo,t);
+%% 4. CONSTRUYE LA GRÁFICA DE: $$ S_{f}(x)=\sum_{k=1}^{10} \cos (2 \pi k x) $$
+t= -20:0.01:20;
+f=0;
+for k = 0:10
+    f = f + cos(2*pi*k*t); 
+    
+end
+t= -20:0.01:20;
+figure(1);
+subplot(2,4,[1,2])
+plot(t,f,'Linewidth',2)
+xlabel('t');ylabel('Sf(t)');
+grid on;
+ax=gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+axis([-8 8, -3 13])
+ax.Box = 'off';
+
+subplot(2,4,[3,4])
+plot(t,f,'r' ,'Linewidth',2)
+xlabel('t');ylabel('Sf(t)');
+grid on;
+ax=gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+axis([-4.5 4.5, -2.5 7])
+ax.Box = 'off';
+
+subplot(2,4,[5,6])
+plot(t,f,'g' ,'Linewidth',2)
+xlabel('t');ylabel('Sf(t)');
+grid on;
+ax=gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+axis([-1.75 1.75, -1.75 2.5])
+ax.Box = 'off';
+
+subplot(2,4,[7,8])
+plot(t,f,'c' ,'Linewidth',2)
+xlabel('t');ylabel('Sf(t)');
+grid on;
+ax=gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+axis([-0.8 0.8, -.5 .5])
+ax.Box = 'off';
+
+%% 5.-Resuelve el problema 1.11-3
+% 1.11-3 Definir:
+% $$x(t)=e^{t(1 + j 2 \pi)} u(-t)$$ 
+%
+% &
+%
+% $$y(t) = Re (2 x (\frac{-5-t}{2}))$$
+%%
+% a)Utilice MATLAB para representar Re (x (t)) frente a Im (x (at)) para a = 0.5, 1 y 2 y −10≤t≤ 10. 
+% ¿Qué importancia tiene el factor de escala a en la forma de la figura resultante?
+%
+% Respuesta:Importa en cuestión de que amplifica o dismuye dependiendo el valor de a con respecto al eje t 
+% 
+clear all
+close all
+t=[-10:0.01:10];
+u=@(t) (t>=0);
+x= @(t) (exp(t.*(1+j*2*pi)).*u(-t));
+y= real(2.*x((-5-t)/(2)));
+a1=0.5;
+a2=1;
+a3=2;
+figure(1)
+plot(real(x(t)),imag(x(a1.*t)))
+
+figure(2)
+plot(real(x(t)),imag(x(a2.*t)))
+
+figure(3)
+plot(real(x(t)),imag(x(a3.*t)))
+
+%%
+% B) Usa MATLAB para grafícar y(t) sobre -10<=t<=10.
+% Analiticamente determine el tiempo t0 donde y(t) tiene una
+% discontinuidad de salto.Verifique su cálculo de t0 utilizando la grafíca
+% de y(t)
+%
+clear all
+close all
+t=[-10:0.01:10];
+u=@(t) 1.0.*(t>=0);
+x= @(t) (exp(t.*(1+j*2*pi)).*u(-t));
+y= real(2.*x((-5-t)/(2)));
+figure(1)
+plot(t,y)
+%%
+% C)Usa MATLAB e integral numerica para calcular la energia Ex de la señal
+% x(t)
+clear all
+close all
+u=@(t) 1.0.*(t>=0);
+x= @(t) (exp(t.*(1+j*2*pi)).*u(-t));
+t=[-10:0.01:10];
+g_squared = @(t) x(t).*x(t);
+E_x = sum(g_squared(t)*.001)
+%%
+% D)Usa MATLAB e integral numerica para calcular la energia de Ey de la señal
+% y(t)
+clear all 
+close all
+t=[-10:0.01:10];
+u=@(t) 1.0.*(t>=0);
+x= @(t) (exp(t.*(1+j*2*pi)).*u(-t));
+y= real(2.*x((-5-t)/(2)));
+g_squared = @(t) y.*y;
+E_y=sum(g_squared(t)*0.001)
+%%
+% E) la gráfica de $x(t)$ para $t\in[-10,10]$
+%
+clear all 
+close all
+t=[-10:0.01:10];
+u=@(t) 1.0.*(t>=0);
+x= @(t) (exp(t.*(1+j*2*pi)).*u(-t));
+figure(1)
+plot(t,x(t))
+%% 6.-Construya una app que permita (consultar los ejemplos preconstruidos):
+% Gráficar señales en tiempo continuo reales, el usuario ingresa la definición de la señal en el formato especifico
+% El usuario puede definir el intervalo de la gráfica
+% El usuario puede seleccionar el tipo de transformación (horizontal, vertical o combinación) que desee realizar a la señal, la app deberá mostrar la gráfica de esta transformación.
+% Se adjunta una imagen de la app a la práctica, y el archivo de la app.
+%%
+% <<App.png>>
+%
+% <https://drive.google.com/file/d/18Y6gHV89YGdpvp0cEXr0Ut0iWnJB6ItQ/view?usp=sharing Descarga la App>
+%
+
+%% REFERENCIAS
+%
+% 1.-Facultad Autodidacta 5/oct/2020 "35.- Subir proyecto a github
+% fácilmente (versión 2)"
+% Recuraperado de https://youtu.be/RjvyyINfVYY
+%
+% 2.- MATLAB . (2020). Publishing Markup. 24/11/2020, de MATLAB 
+%
+% Sitio web: https://la.mathworks.com/help/matlab/matlab_prog/marking-up-matlab-comments-for-publishing.html
+%
+% 3.-https://www.python-course.eu/matplotlib_subplots.php
+%
+% 4.-https://www.youtube.com/watch?v=dZrShAGqT44 VIDEO DE SERIES DE FOURIER EN MATLAB
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
